@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hivan Kebab - Votre destination gourmande</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter pour le texte de base -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Styles globaux pour assurer un défilement correct */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Empêche le défilement sur body/html */
+            font-family: 'Inter', sans-serif; /* Applique Inter globalement */
+        }
+        #app-container {
+            height: 100vh; /* Prend toute la hauteur du viewport */
+            overflow-y: scroll; /* Active le défilement vertical */
+            scroll-behavior: smooth; /* Défilement fluide */
+        }
+        /* Styles pour masquer la barre de défilement (COMMENTÉS POUR LA RENDRE VISIBLE) */
+        /*
+        #app-container::-webkit-scrollbar {
+            display: none;
+        }
+        #app-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        */
+
+        /* Chaque section occupe au moins toute la hauteur du viewport, mais peut s'agrandir */
+        section {
+            min-height: 100vh; /* Minimum une hauteur d'écran, mais peut grandir */
+            height: auto; /* Permet à la hauteur de s'ajuster au contenu */
+        }
+
+        /* Animations CSS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+        }
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+        @keyframes pulseSubtle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        .animate-pulse-subtle {
+            animation: pulseSubtle 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div id="app-container" class="bg-gray-100 text-gray-800 relative">
+
+        <!-- Boutons de langue (FR/EN) - Fixés en bas à droite -->
+        <div class="fixed bottom-4 right-4 z-50 flex space-x-2">
+            <button class="px-4 py-2 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition duration-300 text-sm">FR</button>
+            <button class="px-4 py-2 bg-gray-300 text-gray-800 rounded-full shadow-lg hover:bg-gray-400 transition duration-300 text-sm">EN</button>
+        </div>
+
+        <!-- Section "Bienvenue" (Accueil) - Carrousel d'images plein écran avec navigation et logo -->
+        <section id="home" class="relative overflow-hidden">
+            <!-- Carrousel d'images de fond (géré par JS) -->
+            <div id="hero-images-container" class="absolute inset-0 w-full h-full"></div>
+
+            <!-- Contenu superposé (logo, navigation, slogan) -->
+            <div id="home-content" class="absolute inset-0 bg-black bg-opacity-40 flex flex-col p-4 md:p-8 transition-opacity transition-transform duration-700 ease-out">
+                <!-- Conteneur pour le logo, le panier et la navigation en haut -->
+                <div class="relative w-full h-auto flex items-center justify-between">
+                    <!-- Logo à gauche -->
+                    <div class="flex-shrink-0">
+                        <img src="hivankebablogo.png" alt="Logo Hivan Kebab" class="h-12 md:h-16 w-auto object-contain" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));">
+                    </div>
+                    
+                    <!-- Liens de navigation centrés -->
+                    <div class="flex-grow flex justify-center">
+                        <ul class="flex flex-wrap justify-center gap-x-4 gap-y-2 text-base font-semibold">
+                            <li><button class="nav-button relative px-2 py-1 rounded-md transition duration-300 text-white hover:text-yellow-400 hover:after:w-full after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[2px] after:bg-yellow-400 after:transition-all after:duration-300" data-target="home">Bienvenue</button></li>
+                            <li><button class="nav-button relative px-2 py-1 rounded-md transition duration-300 text-white hover:text-yellow-400 hover:after:w-full after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[2px] after:bg-yellow-400 after:transition-all after:duration-300" data-target="history">Histoire</button></li>
+                            <li><button class="nav-button relative px-2 py-1 rounded-md transition duration-300 text-white hover:text-yellow-400 hover:after:w-full after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[2px] after:bg-yellow-400 after:transition-all after:duration-300" data-target="menus">Menu</button></li>
+                            <li><button class="nav-button relative px-2 py-1 rounded-md transition duration-300 text-white hover:text-yellow-400 hover:after:w-full after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[2px] after:bg-yellow-400 after:transition-all after:duration-300" data-target="contact">Contact</button></li>
+                        </ul>
+                    </div>
+
+                    <!-- Panier à droite -->
+                    <div id="cart-icon-container" class="flex-shrink-0 p-2 relative cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white drop-shadow-lg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.31 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                        </svg>
+                        <span id="cart-item-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center hidden">0</span>
+                    </div>
+                </div>
+
+                <!-- Slogan au centre -->
+                <div class="flex-grow flex items-center justify-center">
+                    <img src="hivankebablogo.png" alt="Logo Hivan Kebab" class="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto drop-shadow-lg animate-fade-in-up" style="max-width: 90%; height: auto;">
+                </div>
+
+                <!-- Slogan en bas de la section -->
+                <div class="text-center text-white p-4">
+                    <p class="mt-4 text-xl md:text-2xl text-white text-opacity-90 animate-fade-in-up delay-200">
+                        Votre destination gourmande
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section "Histoire" (Concept) -->
+        <section id="history" class="relative py-16 px-4 md:px-8 lg:px-16 bg-white flex items-center">
+            <div class="max-w-6xl mx-auto rounded-lg shadow-xl p-8 bg-white">
+                <h2 class="text-4xl font-bold text-center mb-12 text-gray-900">Notre Histoire et Concept</h2>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                    <div class="w-full md:w-1/2">
+                        <div class="aspect-video bg-gray-300 rounded-lg overflow-hidden shadow-lg flex items-center justify-center text-gray-600">
+                            <video src="https://www.w3schools.com/html/mov_bbb.mp4" loop muted autoplay class="w-full h-full object-cover rounded-lg">
+                                Votre navigateur ne supporte pas la balise vidéo.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-6 text-gray-700 leading-relaxed">
+                        <p>Depuis nos débuts, Hivan Kebab s'est engagé à servir des plats qui racontent une histoire, celle d'une passion pour la cuisine et d'un héritage familial transmis de génération en génération. Chaque recette est le fruit d'un savoir-faire unique, garantissant une explosion de saveurs à chaque bouchée.</p>
+                        <p>Plus qu'un simple restaurant, nous sommes un lieu de rassemblement. Nous nous efforçons d'être un pilier de la communauté, en offrant un espace où chacun se sent chez soi, entouré d'une ambiance chaleureuse et conviviale.</p>
+                        <p>Notre chef, avec son sourire légendaire et son dévouement inébranlable, est le cœur de notre établissement. Il vous invite personnellement à découvrir l'expérience Hivan Kebab, une aventure culinaire où l'authenticité et la générosité sont les maîtres mots.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section "Menus" -->
+        <section id="menus" class="relative py-16 px-4 md:px-8 lg:px-16 bg-white flex flex-col items-center">
+            <div class="max-w-6xl mx-auto w-full rounded-lg shadow-xl p-8 bg-white">
+                <h2 class="text-4xl font-bold text-center mb-12 text-gray-900">Nos Menus</h2>
+                <div id="menu-categories-container" class="w-full space-y-4">
+                    <!-- Les catégories de menu seront injectées ici par JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Section "Contact" -->
+        <section id="contact" class="relative py-16 px-4 md:px-8 lg:px-16 bg-gray-900 text-white flex items-center">
+            <div class="max-w-6xl mx-auto text-center p-8 bg-gray-900">
+                <img src="hivankebablogo.png" alt="Logo Hivan Kebab" class="max-w-xs sm:max-w-sm md:max-w-md mx-auto mb-4 drop-shadow-lg" style="height: auto;">
+                <p class="text-xl mb-8">Venez nous rendre visite et goûtez la différence !</p>
+                <div class="flex flex-col md:flex-row justify-around items-center gap-8 mb-12">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-semibold mb-2">Où nous trouver ?</h3>
+                        <p class="mb-4">123 Rue du Kebab, 74140 Douvaine, France</p>
+                        <img src="https://placehold.co/300x200/007BFF/FFFFFF?text=Point+GPS+sur+Carte" alt="Point GPS sur carte" class="mx-auto my-4 rounded-lg shadow-md">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Hivan+Kebab+Douvaine" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-700 transition duration-300">Voir sur Google Maps</a>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-2xl font-semibold mb-2">Contactez-nous</h3>
+                        <p class="mb-2">Téléphone : +33 1 23 45 67 89</p>
+                        <p class="mb-4">Email : contact@hivankebab.com</p>
+                        <form class="mt-8 bg-gray-800 p-6 rounded-lg shadow-xl">
+                            <h3 class="text-2xl font-semibold mb-4">Laissez-nous un avis ou une question</h3>
+                            <textarea class="w-full h-48 p-4 bg-gray-700 text-white rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 resize-y" placeholder="Votre message (max 2500 mots)" maxlength="2500"></textarea>
+                            <button type="submit" class="mt-4 w-full bg-yellow-500 text-gray-900 font-bold py-3 rounded-full shadow-lg hover:bg-yellow-600 transition duration-300">Envoyer</button>
+                        </form>
+                    </div>
+                </div>
+                <p class="mt-12 text-gray-500 text-sm">&copy; <span id="current-year"></span> Hivan Kebab. Tous droits réservés.</p>
+            </div>
+        </section>
+
+        <!-- Modale de Détail du Plat -->
+        <div id="dish-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-40 hidden">
+            <div id="dish-modal-content" class="bg-white rounded-lg shadow-2xl p-6 max-w-xl w-full mx-auto relative max-h-[90vh] overflow-y-auto">
+                <button id="close-dish-modal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-3xl font-bold">&times;</button>
+                <h3 id="modal-dish-name" class="text-3xl font-bold text-gray-900 mb-4 text-center"></h3>
+                <img id="modal-dish-image" src="" alt="" class="w-full h-48 object-cover rounded-lg mb-4 shadow-md">
+                <p id="modal-dish-description" class="text-gray-700 text-lg mb-4 text-center"></p>
+                <div class="mb-4">
+                    <p class="text-gray-800 font-semibold">Ingrédients / Contenu :</p>
+                    <p id="modal-dish-ingredients" class="text-gray-600 text-sm"></p>
+                </div>
+                <div class="mb-4">
+                    <p class="text-gray-800 font-semibold">Allergènes possibles :</p>
+                    <p id="modal-dish-allergens" class="text-red-500 text-sm"></p>
+                </div>
+                <p id="modal-dish-price" class="text-2xl font-bold text-red-600 text-center mt-4"></p>
+
+                <button id="generate-dish-info-btn" class="mt-6 w-full bg-purple-600 text-white px-4 py-3 rounded-full shadow-lg hover:bg-purple-700 transition duration-300 flex items-center justify-center">
+                    <span id="generate-dish-info-text">✨ En savoir plus sur ce plat ✨</span>
+                    <svg id="generate-dish-info-spinner" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </button>
+
+                <button id="add-to-cart-btn" class="mt-3 w-full bg-green-600 text-white px-4 py-3 rounded-full shadow-lg hover:bg-green-700 transition duration-300 flex items-center justify-center">
+                    🛒 Commander
+                </button>
+
+                <div id="generated-dish-info-display" class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200 hidden">
+                    <p class="text-blue-800 text-sm italic"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modale du Panier -->
+        <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-40 hidden">
+            <div id="cart-modal-content" class="bg-white rounded-lg shadow-2xl p-6 max-w-xl w-full mx-auto relative max-h-[90vh] overflow-y-auto">
+                <button id="close-cart-modal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-3xl font-bold">&times;</button>
+                <h3 class="text-3xl font-bold text-gray-900 mb-6 text-center">Votre Commande</h3>
+                <div id="cart-items-list" class="space-y-4">
+                    <!-- Les articles du panier seront injectés ici par JS -->
+                </div>
+                <div id="cart-total-display" class="pt-4 border-t-2 border-gray-200 flex justify-between items-center font-bold text-xl mt-4 hidden">
+                    <span>Total :</span>
+                    <span id="cart-total-price">0.00€</span>
+                </div>
+                <button id="checkout-btn" class="mt-6 w-full bg-yellow-500 text-gray-900 font-bold py-3 rounded-full shadow-lg hover:bg-yellow-600 transition duration-300 hidden">
+                    Procéder au paiement
+                </button>
+                <p id="empty-cart-message" class="text-center text-gray-600">Votre panier est vide pour le moment.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const appContainer = document.getElementById('app-container');
+            const heroImagesContainer = document.getElementById('hero-images-container');
+            const homeContent = document.getElementById('home-content');
+            const navButtons = document.querySelectorAll('.nav-button');
+            const cartIconContainer = document.getElementById('cart-icon-container');
+            const cartItemCount = document.getElementById('cart-item-count');
+            const dishModal = document.getElementById('dish-modal');
+            const dishModalContent = document.getElementById('dish-modal-content');
+            const closeDishModalBtn = document.getElementById('close-dish-modal');
+            const modalDishName = document.getElementById('modal-dish-name');
+            const modalDishImage = document.getElementById('modal-dish-image');
+            const modalDishDescription = document.getElementById('modal-dish-description');
+            const modalDishIngredients = document.getElementById('modal-dish-ingredients');
+            const modalDishAllergens = document.getElementById('modal-dish-allergens');
+            const modalDishPrice = document.getElementById('modal-dish-price');
+            const generateDishInfoBtn = document.getElementById('generate-dish-info-btn');
+            const generateDishInfoText = document.getElementById('generate-dish-info-text');
+            const generateDishInfoSpinner = document.getElementById('generate-dish-info-spinner');
+            const generatedDishInfoDisplay = document.getElementById('generated-dish-info-display');
+            const generatedDishInfoP = generatedDishInfoDisplay.querySelector('p');
+            const addToCartBtn = document.getElementById('add-to-cart-btn');
+            const cartModal = document.getElementById('cart-modal');
+            const cartModalContent = document.getElementById('cart-modal-content');
+            const closeCartModalBtn = document.getElementById('close-cart-modal');
+            const cartItemsList = document.getElementById('cart-items-list');
+            const cartTotalDisplay = document.getElementById('cart-total-display');
+            const cartTotalPrice = document.getElementById('cart-total-price');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            const emptyCartMessage = document.getElementById('empty-cart-message');
+
+            // Data
+            const heroImages = [
+                'https://placehold.co/1920x1080/FFC107/333333?text=Bienvenue+1',
+                'https://placehold.co/1920x1080/E53935/FFFFFF?text=Bienvenue+2',
+                'https://placehold.co/1920x1080/FF7043/FFFFFF?text=Bienvenue+3',
+                'https://placehold.co/1920x1080/333333/FFFFFF?text=Bienvenue+4',
+            ];
+            let currentImageIndex = 0;
+            let activeSection = 'home';
+            let activeMenuCategory = 'assiettes';
+            let selectedMenuItem = null;
+            let cartItems = [];
+
+            const menuCategories = [
+                { id: 'assiettes', name: 'Assiettes' },
+                { id: 'tacos', name: 'Tacos' },
+                { id: 'sandwichs', name: 'Sandwichs' },
+                { id: 'burgers', name: 'Burgers' },
+                { id: 'specialites', name: 'Spécialités' },
+                { id: 'petitesfaims', name: 'Petites Faims / Enfants' },
+                { id: 'boissons', name: 'Boissons' },
+            ];
+
+            const menuItemsData = {
+                assiettes: [
+                    { name: 'Assiette Kebab', description: 'Viande de kebab, frites, salade, tomate, oignon.', price: '12.50€', imageUrl: 'https://placehold.co/400x300/FFC107/333333?text=Kebab', ingredients: 'Viande de veau/dinde, pommes de terre, laitue, tomate, oignon, sauce blanche, pain pita.', allergens: 'Gluten (pain), Lait (sauce blanche).' },
+                    { name: 'Assiette Poulet', description: 'Poulet mariné grillé, frites, salade.', price: '13.00€', imageUrl: 'https://placehold.co/400x300/E53935/FFFFFF?text=Poulet', ingredients: 'Poulet, pommes de terre, laitue, tomate, oignon, sauce au choix.', allergens: 'Aucun.' },
+                    { name: 'Assiette Mixte', description: 'Mélange kebab et poulet, frites, salade.', price: '14.00€', imageUrl: 'https://placehold.co/400x300/FF7043/FFFFFF?text=Mixte', ingredients: 'Viande de veau/dinde, poulet, pommes de terre, laitue, tomate, oignon, sauce au choix.', allergens: 'Gluten (pain), Lait (sauce blanche).' },
+                    { name: 'Assiette Végétarienne', description: 'Falafels, légumes grillés, frites, salade.', price: '11.50€', imageUrl: 'https://placehold.co/400x300/333333/FFFFFF?text=Végétarienne', ingredients: 'Falafels (pois chiches), légumes variés, pommes de terre, laitue, tomate, oignon, sauce tahini.', allergens: 'Sésame (tahini).' },
+                    { name: 'Assiette Brochettes', description: 'Brochettes d\'agneau ou poulet, frites, salade.', price: '15.00€', imageUrl: 'https://placehold.co/400x300/007BFF/FFFFFF?text=Brochettes', ingredients: 'Agneau ou poulet, pommes de terre, laitue, tomate, oignon.', allergens: 'Aucun.' },
+                    { name: 'Assiette Kefta', description: 'Boulettes de viande hachée, frites, salade.', price: '13.50€', imageUrl: 'https://placehold.co/400x300/28A745/FFFFFF?text=Kefta', ingredients: 'Viande de bœuf hachée, épices, pommes de terre, laitue, tomate, oignon.', allergens: 'Aucun.' },
+                    { name: 'Assiette Adana', description: 'Brochette de viande hachée épicée, frites, salade.', price: '14.50€', imageUrl: 'https://placehold.co/400x300/DC3545/FFFFFF?text=Adana', ingredients: 'Viande hachée épicée, pommes de terre, laitue, tomate, oignon.', allergens: 'Aucun.' },
+                    { name: 'Assiette Iskender', description: 'Kebab sur pain pita, sauce tomate, yaourt.', price: '16.00€', imageUrl: 'https://placehold.co/400x300/6C757D/FFFFFF?text=Iskender', ingredients: 'Viande de kebab, pain pita, sauce tomate, yaourt, beurre fondu.', allergens: 'Gluten (pain), Lait (yaourt, beurre).' },
+                    { name: 'Assiette Falafel', description: 'Falafels, houmous, salade, sauce tahini.', price: '11.00€', imageUrl: 'https://placehold.co/400x300/17A2B8/FFFFFF?text=Falafel', ingredients: 'Falafels (pois chiches), houmous, laitue, tomate, oignon, sauce tahini.', allergens: 'Sésame (tahini).' },
+                    { name: 'Assiette Chawarma', description: 'Poulet ou agneau mariné, frites, salade.', price: '13.50€', imageUrl: 'https://placehold.co/400x300/FFC107/333333?text=Chawarma', ingredients: 'Poulet ou agneau mariné, pommes de terre, laitue, tomate, oignon.', allergens: 'Aucun.' },
+                    { name: 'Assiette Döner', description: 'Viande de döner, frites, salade, sauce.', price: '12.50€', imageUrl: 'https://placehold.co/400x300/E53935/FFFFFF?text=Doner', ingredients: 'Viande de döner, pommes de terre, laitue, tomate, oignon, sauce au choix.', allergens: 'Gluten (pain), Lait (sauce blanche).' },
+                    { name: 'Assiette Grillades', description: 'Assortiment de viandes grillées, frites, salade.', price: '18.00€', imageUrl: 'https://placehold.co/400x300/FF7043/FFFFFF?text=Grillades', ingredients: 'Assortiment de viandes (agneau, poulet, kefta), pommes de terre, laitue, tomate, oignon.', allergens: 'Aucun.' },
+                    { name: 'Assiette Enfants', description: 'Mini-kebab ou nuggets, frites, boisson.', price: '8.00€', imageUrl: 'https://placehold.co/400x300/333333/FFFFFF?text=Enfants', ingredients: 'Mini-kebab ou nuggets de poulet, pommes de terre, boisson.', allergens: 'Gluten (nuggets, pain), Lait (boisson).' },
+                ],
+                tacos: [
+                    { name: 'Tacos Simple (1 viande)', description: 'Viande au choix, frites, sauce fromagère.', price: '9.00€', imageUrl: 'https://placehold.co/400x300/FFC107/333333?text=Tacos+Simple', ingredients: 'Tortilla de blé, viande au choix (kebab, poulet, kefta), frites, sauce fromagère.', allergens: 'Gluten (tortilla), Lait (sauce fromagère).' },
+                    { name: 'Tacos Double (2 viandes)', description: 'Deux viandes au choix, frites, sauce fromagère.', price: '11.00€', imageUrl: 'https://placehold.co/400x300/E53935/FFFFFF?text=Tacos+Double', ingredients: 'Tortilla de blé, deux viandes au choix, frites, sauce fromagère.', allergens: 'Gluten (tortilla), Lait (sauce fromagère).' },
+                    { name: 'Tacos Triple (3 viandes)', description: 'Trois viandes au choix, frites, sauce fromagère.', price: '13.00€', imageUrl: 'https://placehold.co/400x300/FF7043/FFFFFF?text=Tacos+Triple', ingredients: 'Tortilla de blé, trois viandes au choix, frites, sauce fromagère.', allergens: 'Gluten (tortilla), Lait (sauce fromagère).' },
+                ],
+                sandwichs: [
+                    { name: 'Sandwich Kebab', description: 'Viande de kebab, crudités, sauce au choix.', price: '7.00€', imageUrl: 'https://placehold.co/400x300/333333/FFFFFF?text=Sandwich+Kebab', ingredients: 'Pain, viande de kebab, laitue, tomate, oignon, sauce au choix.', allergens: 'Gluten (pain), Lait (sauce blanche).' },
+                    { name: 'Sandwich Poulet', description: 'Poulet grillé, crudités, sauce au choix.', price: '7.50€', imageUrl: 'https://placehold.co/400x300/007BFF/FFFFFF?text=Sandwich+Poulet', ingredients: 'Pain, poulet grillé, laitue, tomate, oignon, sauce au choix.', allergens: 'Gluten (pain).' },
+                    { name: 'Sandwich Kefta', description: 'Boulettes de viande, crudités, sauce au choix.', price: '7.50€', imageUrl: 'https://placehold.co/400x300/28A745/FFFFFF?text=Sandwich+Kefta', ingredients: 'Pain, boulettes de viande hachée, laitue, tomate, oignon, sauce au choix.', allergens: 'Gluten (pain).' },
+                    { name: 'Sandwich Merguez', description: 'Saucisses merguez, crudités, sauce au choix.', price: '7.00€', imageUrl: 'https://placehold.co/400x300/DC3545/FFFFFF?text=Sandwich+Merguez', ingredients: 'Pain, merguez, laitue, tomate, oignon, sauce au choix.', allergens: 'Gluten (pain).' },
+                    { name: 'Sandwich Thon', description: 'Thon, salade, tomate, mayonnaise.', price: '6.50€', imageUrl: 'https://placehold.co/400x300/6C757D/FFFFFF?text=Sandwich+Thon', ingredients: 'Pain, thon, laitue, tomate, mayonnaise.', allergens: 'Gluten (pain), Œufs (mayonnaise), Poisson (thon).' },
+                    { name: 'Sandwich Falafel', description: 'Falafels, salade, houmous, sauce tahini.', price: '6.50€', imageUrl: 'https://placehold.co/400x300/17A2B8/FFFFFF?text=Sandwich+Falafel', ingredients: 'Pain, falafels, laitue, houmous, sauce tahini.', allergens: 'Gluten (pain), Sésame (tahini).' },
+                    { name: 'Sandwich Américain', description: 'Steak haché, œuf, fromage, crudités.', price: '8.00€', imageUrl: 'https://placehold.co/400x300/FFC107/333333?text=Sandwich+Américain', ingredients: 'Pain, steak haché, œuf, fromage, laitue, tomate, oignon, sauce au choix.', allergens: 'Gluten (pain), Lait (fromage), Œufs.' },
+                    { name: 'Sandwich Cordon Bleu', description: 'Cordon bleu (poulet, jambon, fromage), crudités, sauce au choix.', price: '8.00€', imageUrl: 'https://placehold.co/400x300/E53935/FFFFFF?text=Sandwich+Cordon', ingredients: 'Pain, cordon bleu (poulet, jambon, fromage), laitue, tomate, oignon, sauce au choix.', allergens: 'Gluten (pain, panure), Lait (fromage).' },
+                    { name: 'Sandwich Escalope', description: 'Escalope de poulet, crudités, sauce au choix.', price: '8.00€', imageUrl: 'https://placehold.co/400x300/FF7043/FFFFFF?text=Sandwich+Escalope', ingredients: 'Pain, escalope de poulet, laitue, tomate, oignon, sauce au choix.', allergens: 'Gluten (pain).' },
+                    { name: 'Sandwich Poisson', description: 'Poisson pané, salade, sauce tartare.', price: '7.50€', imageUrl: 'https://placehold.co/400x300/333333/FFFFFF?text=Sandwich+Poisson', ingredients: 'Pain, poisson pané, laitue, sauce tartare.', allergens: 'Gluten (pain, panure), Poisson.' },
+                    { name: 'Sandwich Végétarien', description: 'Légumes grillés, fromage, sauce.', price: '7.00€', imageUrl: 'https://placehold.co/400x300/007BFF/FFFFFF?text=Sandwich+Végétarien', ingredients: 'Pain, légumes grillés (poivrons, courgettes, aubergines), fromage, sauce au choix.', allergens: 'Gluten (pain), Lait (fromage).' },
+                    { name: 'Sandwich Mixte', description: 'Mélange de viandes, crudités, sauce.', price: '8.50€', imageUrl: 'https://placehold.co/400x300/28A745/FFFFFF?text=Sandwich+Mixte', ingredients: 'Pain, mélange de viandes, laitue, tomate, oignon, sauce au choix.', allergens: 'Gluten (pain), Lait (sauce blanche).' },
+                    { name: 'Sandwich Froid', description: 'Jambon, fromage, crudités.', price: '6.00€', imageUrl: 'https://placehold.co/400x300/DC3545/FFFFFF?text=Sandwich+Froid', ingredients: 'Pain, jambon, fromage, laitue, tomate.', allergens: 'Gluten (pain), Lait (fromage).' },
+                    { name: 'Sandwich Chaud', description: 'Viande au choix, fromage fondu.', price: '7.50€', imageUrl: 'https://placehold.co/400x300/6C757D/FFFFFF?text=Sandwich+Chaud', ingredients: 'Pain, viande au choix, fromage fondu.', allergens: 'Gluten (pain), Lait (fromage).' },
+                ],
+                burgers: [
+                    { name: 'Cheeseburger', description: 'Steak haché, fromage, crudités, sauce burger.', price: '8.50€', imageUrl: 'https://placehold.co/400x300/FFC107/333333?text=Cheeseburger', ingredients: 'Pain burger, steak haché pur bœuf, fromage cheddar, laitue, tomate, oignon, cornichons, sauce burger.', allergens: 'Gluten (pain), Lait (fromage), Œufs (sauce).' },
+                    { name: 'Chicken Burger', description: 'Filet de poulet pané, salade, tomate, sauce.', price: '8.00€', imageUrl: 'https://placehold.co/400x300/E53935/FFFFFF?text=Chicken+Burger', ingredients: 'Pain burger, filet de poulet pané, laitue, tomate, sauce mayonnaise.', allergens: 'Gluten (pain, panure), Œufs (mayonnaise).' },
+                    { name: 'Burger Végétarien', description: 'Galette de légumes, fromage, crudités.', price: '8.00€', imageUrl: 'https://placehold.co/400x300/FF7043/FFFFFF?text=Burger+Végétarien', ingredients: 'Pain burger, galette de légumes, fromage, laitue, tomate, oignon, sauce au choix.', allergens: 'Gluten (pain), Lait (fromage).' },
+                ],
+                specialites: [
+                    { name: 'Lahmacun', description: 'Fine pâte garnie de viande hachée épicée.', price: '6.00€', imageUrl: 'https://placehold.co/400x300/333333/FFFFFF?text=Lahmacun', ingredients: 'Pâte fine, viande hachée (bœuf/agneau), tomate, poivron, oignon, persil, épices.', allergens: 'Gluten (pâte).' },
+                    { name: 'Pide (Viande Hachée)', description: 'Pain turc en forme de barque, viande hachée.', price: '9.00€', imageUrl: 'https://placehold.co/400x300/007BFF/FFFFFF?text=Pide+Viande', ingredients: 'Pâte à pain, viande hachée (bœuf/agneau), tomate, poivron, oignon.', allergens: 'Gluten (pâte).' },
+                    { name: 'Pide (Fromage)', description: 'Pain turc en forme de barque, fromage fondu.', price: '8.50€', imageUrl: 'https://placehold.co/400x300/28A745/FFFFFF?text=Pide+Fromage', ingredients: 'Pâte à pain, mélange de fromages.', allergens: 'Gluten (pâte), Lait (fromage).' },
+                    { name: 'Pide (Mixte)', description: 'Pain turc en forme de barque, viande et fromage.', price: '9.50€', imageUrl: 'https://placehold.co/400x300/DC3545/FFFFFF?text=Pide+Mixte', ingredients: 'Pâte à pain, viande hachée, mélange de fromages.', allergens: 'Gluten (pâte), Lait (fromage).' },
+                    { name: 'Kofta Grillée', description: 'Boulettes de viande grillées, accompagnement.', price: '12.00€', imageUrl: 'https://placehold.co/400x300/6C757D/FFFFFF?text=Kofta', ingredients: 'Boulettes de viande (bœuf/agneau) grillées, riz ou boulgour, salade.', allergens: 'Aucun.' },
+                    { name: 'Brochettes d\'Agneau', description: 'Tendres morceaux d\'agneau grillés.', price: '15.00€', imageUrl: 'https://placehold.co/400x300/17A2B8/FFFFFF?text=Brochettes+Agneau', ingredients: 'Morceaux d\'agneau marinés et grillés, riz ou boulgour, salade.', allergens: 'Aucun.' },
+                    { name: 'Brochettes de Poulet', description: 'Morceaux de poulet marinés et grillés.', price: '14.00€', imageUrl: 'https://placehold.co/400x300/FFC107/333333?text=Brochettes+Poulet', ingredients: 'Morceaux de poulet marinés et grillés, riz ou boulgour, salade.', allergens: 'Aucun.' },
+                    { name: 'Grillades Mixtes', description: 'Assortiment de nos meilleures grillades.', price: '19.00€', imageUrl: 'https://placehold.co/400x300/E53935/FFFFFF?text=Grillades+Mixtes', ingredients: 'Assortiment de brochettes (agneau, poulet, kefta), riz ou boulgour, salade.', allergens: 'Aucun.' },
+                ],
+                petitesfaims: [
+                    { name: 'Nuggets (6 pièces)', description: 'Servis avec frites.', price: '6.00€', imageUrl: 'https://placehold.co/400x300/FF7043/FFFFFF?text=Nuggets', ingredients: 'Nuggets de poulet panés, pommes de terre frites.', allergens: 'Gluten (panure).' },
+                    { name: 'Frites', description: 'Portion de frites croustillantes.', price: '3.00€', imageUrl: 'https://placehold.co/400x300/333333/FFFFFF?text=Frites', ingredients: 'Pommes de terre, huile de friture, sel.', allergens: 'Aucun.' },
+                    { name: 'Salade Composée', description: 'Salade verte, tomate, concombre, olives.', price: '4.00€', imageUrl: 'https://placehold.co/400x300/007BFF/FFFFFF?text=Salade', ingredients: 'Laitue, tomate, concombre, olives, vinaigrette.', allergens: 'Aucun.' },
+                    { name: 'Mini Sandwich', description: 'Petit sandwich au choix.', price: '4.50€', imageUrl: 'https://placehold.co/400x300/28A745/FFFFFF?text=Mini+Sandwich', ingredients: 'Pain, garniture au choix (kebab, poulet, thon), crudités.', allergens: 'Gluten (pain).' },
+                    { name: 'Menu Enfant', description: 'Mini-kebab ou nuggets, frites, boisson.', price: '8.00€', imageUrl: 'https://placehold.co/400x300/DC3545/FFFFFF?text=Menu+Enfant', ingredients: 'Mini-kebab ou nuggets de poulet, pommes de terre frites, boisson au choix.', allergens: 'Gluten (nuggets, pain), Lait (boisson).' },
+                ],
+                boissons: [
+                    { name: 'Coca-Cola', description: '33cl', price: '2.50€', imageUrl: 'https://placehold.co/400x300/FFC107/333333?text=Coca-Cola', ingredients: 'Eau gazéifiée, sucre, colorant (caramel E150d), acidifiant (acide phosphorique), arômes naturels, caféine.', allergens: 'Aucun.' },
+                    { name: 'Coca-Cola Zéro', description: '33cl', price: '2.50€', imageUrl: 'https://placehold.co/400x300/E53935/FFFFFF?text=Coca-Cola+Zéro', ingredients: 'Eau gazéifiée, colorant (caramel E150d), acidifiants (acide phosphorique, acide citrique), édulcorants (aspartame, acésulfame K), arômes naturels, caféine.', allergens: 'Contient une source de phénylalanine.' },
+                    { name: 'Fanta', description: '33cl', price: '2.50€', imageUrl: 'https://placehold.co/400x300/FF7043/FFFFFF?text=Fanta', ingredients: 'Eau gazéifiée, sucre, jus d\'orange à base de concentré (3%), acidifiant (acide citrique), arômes naturels d\'orange, stabilisants (gomme arabique, esters glycériques de résine de bois), conservateur (sorbate de potassium), antioxydant (acide ascorbique), colorant (bêta-carotène).', allergens: 'Aucun.' },
+                    { name: 'Sprite', description: '33cl', price: '2.50€', imageUrl: 'https://placehold.co/400x300/333333/FFFFFF?text=Sprite', ingredients: 'Eau gazéifiée, sucre, acidifiants (acide citrique, citrate de sodium), arômes naturels de citron-citron vert, édulcorants (aspartame, acésulfame K).', allergens: 'Contient une source de phénilalanine.' },
+                    { name: 'Orangina', description: '33cl', price: '2.50€', imageUrl: 'https://placehold.co/400x300/007BFF/FFFFFF?text=Orangina', ingredients: 'Eau gazéifiée, jus d\'agrumes (orange 10%, citron, pamplemousse) à base de concentrés, sucre, pulpes d\'orange (2%), extrait d\'orange, arômes naturels.', allergens: 'Aucun.' },
+                    { name: 'Ice Tea Pêche', description: '33cl', price: '2.50€', imageUrl: 'https://placehold.co/400x300/28A745/FFFFFF?text=Ice+Tea+Pêche', ingredients: 'Eau, sucre, extrait de thé noir, jus de pêche à base de concentré (0,1%), acidifiant (acide citric), arôme naturel de pêche, antioxydant (acide ascorbique).', allergens: 'Aucun.' },
+                    { name: 'Jus d\'Orange', description: '25cl', price: '3.00€', imageUrl: 'https://placehold.co/400x300/DC3545/FFFFFF?text=Jus+Orange', ingredients: 'Pur jus d\'orange pressé.', allergens: 'Aucun.' },
+                    { name: 'Jus de Pomme', description: '25cl', price: '3.00€', imageUrl: 'https://placehold.co/400x300/6C757D/FFFFFF?text=Jus+Pomme', ingredients: 'Pur jus de pomme pressé.', allergens: 'Aucun.' },
+                    { name: 'Eau Plate', description: '50cl', price: '2.00€', imageUrl: 'https://placehold.co/400x300/17A2B8/FFFFFF?text=Eau+Plate', ingredients: 'Eau de source naturelle.', allergens: 'Aucun.' },
+                    { name: 'Eau Pétillante', description: '50cl', price: '2.00€', imageUrl: 'https://placehold.co/400x300/FFC107/333333?text=Eau+Pétillante', ingredients: 'Eau de source naturelle gazéifiée.', allergens: 'Aucun.' },
+                    { name: 'Ayran', description: 'Boisson turque au yaourt salé.', price: '3.00€', imageUrl: 'https://placehold.co/400x300/E53935/FFFFFF?text=Ayran', ingredients: 'Yaourt, eau, sel.', allergens: 'Lait.' },
+                    { name: 'Red Bull', description: '25cl', price: '4.00€', imageUrl: 'https://placehold.co/400x300/FF7043/FFFFFF?text=Red+Bull', ingredients: 'Eau, saccharose, glucose, acidifiant (acide citrique), dioxyde de carbone, taurine (0,4%), régulateurs d\'acidité (carbonates de sodium, carbonate de magnésium), caféine (0,03%), vitamines (niacine, acide pantothénique, B6, B12), arômes, colorants (caramel ordinaire, riboflavines).', allergens: 'Aucun.' },
+                    { name: 'Monster', description: '50cl', price: '4.50€', imageUrl: 'https://placehold.co/400x300/333333/FFFFFF?text=Monster', ingredients: 'Eau gazéifiée, sucre, sirop de glucose, acidifiant (acide citrique), arômes, taurine (0,4%), régulateur d\'acidité (citrate de sodium), extrait de racine de panax ginseng (0,08%), L-carnitine L-tartrate (0,04%), conservateurs (sorbate de potassium, benzoate de sodium), caféine (0,03%), colorant (anthocyanes), vitamines (B3, B6, B2, B12), édulcorant (sucralose), chlorure de sodium, D-glucuronolactone, extrait de graine de guarana (0,002%), inositol.', allergens: 'Aucun.' },
+                    { name: 'Café Expresso', description: 'Petit café serré.', price: '2.00€', imageUrl: 'https://placehold.co/400x300/007BFF/FFFFFF?text=Expresso', ingredients: 'Café moulu, eau chaude.', allergens: 'Aucun.' },
+                    { name: 'Café Allongé', description: 'Expresso avec plus d\'eau chaude.', price: '2.20€', imageUrl: 'https://placehold.co/400x300/28A745/FFFFFF?text=Café+Allongé', ingredients: 'Café moulu, eau chaude.', allergens: 'Aucun.' },
+                    { name: 'Thé à la Menthe', description: 'Thé vert frais à la menthe.', price: '3.00€', imageUrl: 'https://placehold.co/400x300/DC3545/FFFFFF?text=Thé+Menthe', ingredients: 'Thé vert, feuilles de menthe fraîche, sucre (optionnel).', allergens: 'Aucun.' },
+                    { name: 'Bière sans alcool', description: '33cl', price: '3.50€', imageUrl: 'https://placehold.co/400x300/6C757D/FFFFFF?text=Bière+Sans+Alcool', ingredients: 'Eau, malt d\'orge, houblon, levure.', allergens: 'Gluten (orge).' },
+                    { name: 'Limonade Maison', description: 'Rafraîchissante et faite maison.', price: '4.00€', imageUrl: 'https://placehold.co/400x300/17A2B8/FFFFFF?text=Limonade+Maison', ingredients: 'Eau, jus de citron frais, sucre, feuilles de menthe.', allergens: 'Aucun.' },
+                    { name: 'Smoothie Fruits Rouges', description: 'Mélange de fruits rouges frais.', price: '5.00€', imageUrl: 'https://placehold.co/400x300/FFC107/333333?text=Smoothie+Fruits+Rouges', ingredients: 'Fruits rouges (fraises, framboises, myrtilles), yaourt, miel.', allergens: 'Lait (yaourt).' },
+                    { name: 'Milkshake Vanille', description: 'Préparé avec de la vraie glace à la vanille.', price: '4.50€', imageUrl: 'https://placehold.co/400x300/E53935/FFFFFF?text=Milkshake+Vanille', ingredients: 'Glace à la vanille, lait, sucre, extrait de vanille.', allergens: 'Lait.' },
+                    { name: 'Milkshake Chocolat', description: 'Préparé avec de la vraie glace au chocolat.', price: '4.50€', imageUrl: 'https://placehold.co/400x300/FF7043/FFFFFF?text=Milkshake+Chocolat', ingredients: 'Glace au chocolat, lait, sirop de chocolat.', allergens: 'Lait.' },
+                    { name: 'Milkshake Fraise', description: 'Préparé avec de la vraie glace à la fraise.', price: '4.50€', imageUrl: 'https://placehold.co/400x300/333333/FFFFFF?text=Milkshake+Fraise', ingredients: 'Glace à la fraise, lait, sirop de fraise.', allergens: 'Lait.' },
+                ],
+            };
+
+            // Initialisation des images du carrousel
+            heroImages.forEach((src, index) => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = `Image Bienvenue Hivan Kebab ${index + 1}`;
+                img.className = `absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100' : 'opacity-0'}`;
+                heroImagesContainer.appendChild(img);
+            });
+
+            // Carrousel logic
+            setInterval(() => {
+                heroImagesContainer.children[currentImageIndex].classList.remove('opacity-100');
+                heroImagesContainer.children[currentImageIndex].classList.add('opacity-0');
+                currentImageIndex = (currentImageIndex + 1) % heroImages.length;
+                heroImagesContainer.children[currentImageIndex].classList.remove('opacity-0');
+                heroImagesContainer.children[currentImageIndex].classList.add('opacity-100');
+            }, 5000);
+
+            // Scroll to section logic
+            navButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const targetId = e.target.dataset.target;
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Intersection Observer for active section
+            const sections = document.querySelectorAll('section');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2,
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        activeSection = entry.target.id;
+                        navButtons.forEach(button => {
+                            if (button.dataset.target === activeSection) {
+                                button.classList.add('text-yellow-400');
+                                button.classList.remove('text-white');
+                            } else {
+                                button.classList.remove('text-yellow-400');
+                                button.classList.add('text-white');
+                            }
+                        });
+                        // Apply animation to home content only when it's the active section
+                        if (activeSection === 'home') {
+                            homeContent.classList.remove('opacity-0', 'transform', '-translate-y-1/2', 'scale-75');
+                            homeContent.classList.add('opacity-100', 'translate-y-0');
+                        } else {
+                            homeContent.classList.remove('opacity-100', 'translate-y-0');
+                            homeContent.classList.add('opacity-0', 'transform', '-translate-y-1/2', 'scale-75');
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => observer.observe(section));
+
+            // Populate menu categories
+            const menuCategoriesContainer = document.getElementById('menu-categories-container');
+            menuCategories.forEach(category => {
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'border border-gray-200 rounded-lg overflow-hidden';
+                categoryDiv.innerHTML = `
+                    <button class="w-full text-left py-4 px-6 bg-gray-100 rounded-t-lg shadow-sm flex justify-between items-center transition duration-300 text-gray-700 hover:bg-gray-200 relative group" data-category-id="${category.id}">
+                        <span class="text-xl font-semibold">${category.name}</span>
+                        <svg class="w-6 h-6 transform transition-transform duration-300 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-red-600 transition-all duration-300 group-hover:w-full"></span>
+                    </button>
+                    <div class="p-6 bg-white hidden" id="menu-items-${category.id}">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+                    </div>
+                `;
+                menuCategoriesContainer.appendChild(categoryDiv);
+
+                const categoryButton = categoryDiv.querySelector('button');
+                const menuItemsDiv = categoryDiv.querySelector(`#menu-items-${category.id}`);
+                const menuItemsGrid = menuItemsDiv.querySelector('div.grid');
+                const svgIcon = categoryButton.querySelector('svg');
+
+                categoryButton.addEventListener('click', () => {
+                    const currentCategoryId = categoryButton.dataset.categoryId;
+                    if (activeMenuCategory === currentCategoryId) {
+                        activeMenuCategory = null;
+                        menuItemsDiv.classList.add('hidden');
+                        svgIcon.classList.remove('rotate-180', 'text-red-700');
+                        categoryButton.classList.remove('bg-red-50', 'text-red-700');
+                        categoryButton.classList.add('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
+                    } else {
+                        // Close previously active category
+                        const prevActiveItemsDiv = document.getElementById(`menu-items-${activeMenuCategory}`);
+                        if (prevActiveItemsDiv) {
+                            prevActiveItemsDiv.classList.add('hidden');
+                            const prevActiveButton = prevActiveItemsDiv.closest('.border').querySelector('button');
+                            if (prevActiveButton) {
+                                prevActiveButton.classList.remove('bg-red-50', 'text-red-700');
+                                prevActiveButton.classList.add('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
+                                prevActiveButton.querySelector('svg').classList.remove('rotate-180', 'text-red-700');
+                            }
+                        }
+
+                        activeMenuCategory = currentCategoryId;
+                        menuItemsDiv.classList.remove('hidden');
+                        svgIcon.classList.add('rotate-180', 'text-red-700');
+                        categoryButton.classList.add('bg-red-50', 'text-red-700');
+                        categoryButton.classList.remove('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
+                    }
+                });
+
+                // Populate menu items for each category
+                menuItemsData[category.id].forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'bg-gray-50 p-4 rounded-lg shadow-sm cursor-pointer hover:bg-gray-100 transition duration-200';
+                    itemDiv.innerHTML = `
+                        <h4 class="text-xl font-semibold text-gray-800 mb-1">${item.name}</h4>
+                        <p class="text-gray-600 text-sm mb-2">${item.description}</p>
+                        <p class="text-lg font-bold text-red-600">${item.price}</p>
+                    `;
+                    itemDiv.addEventListener('click', () => openDishModal(item));
+                    menuItemsGrid.appendChild(itemDiv);
+                });
+
+                // Open 'Assiettes' by default
+                if (category.id === 'assiettes') {
+                    menuItemsDiv.classList.remove('hidden');
+                    svgIcon.classList.add('rotate-180', 'text-red-700');
+                    categoryButton.classList.add('bg-red-50', 'text-red-700');
+                    categoryButton.classList.remove('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
+                }
+            });
+
+            // Dish Modal Functions
+            function openDishModal(item) {
+                selectedMenuItem = item;
+                modalDishName.textContent = item.name;
+                modalDishImage.src = item.imageUrl;
+                modalDishImage.alt = `Image de ${item.name}`;
+                modalDishDescription.textContent = item.description;
+                modalDishIngredients.textContent = item.ingredients;
+                modalDishAllergens.textContent = item.allergens || 'Aucun allergène majeur connu.';
+                modalDishPrice.textContent = item.price;
+                generatedDishInfoDisplay.classList.add('hidden'); // Hide previous info
+                generatedDishInfoP.textContent = '';
+                generateDishInfoText.textContent = '✨ En savoir plus sur ce plat ✨';
+                generateDishInfoSpinner.classList.add('hidden');
+                dishModal.classList.remove('hidden');
+            }
+
+            function closeDishModal() {
+                dishModal.classList.add('hidden');
+                selectedMenuItem = null;
+            }
+
+            dishModal.addEventListener('click', (e) => {
+                if (e.target === dishModal) { // Clicked on background
+                    closeDishModal();
+                }
+            });
+            closeDishModalBtn.addEventListener('click', closeDishModal);
+
+            // Gemini API Call
+            generateDishInfoBtn.addEventListener('click', async () => {
+                if (!selectedMenuItem) return;
+
+                generateDishInfoText.textContent = 'Chargement...';
+                generateDishInfoSpinner.classList.remove('hidden');
+                generatedDishInfoDisplay.classList.add('hidden');
+                generatedDishInfoP.textContent = '';
+
+                const prompt = `Donne-moi un fait intéressant ou l'origine du plat suivant en 2-3 phrases : ${selectedMenuItem.name}.`;
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // Canvas le fournira automatiquement à l'exécution
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        generatedDishInfoP.textContent = text;
+                        generatedDishInfoDisplay.classList.remove('hidden');
+                    } else {
+                        generatedDishInfoP.textContent = "Impossible de générer des informations pour le moment.";
+                        generatedDishInfoDisplay.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    console.error("Erreur lors de l'appel à l'API Gemini:", error);
+                    generatedDishInfoP.textContent = "Une erreur est survenue lors de la récupération des informations.";
+                    generatedDishInfoDisplay.classList.remove('hidden');
+                } finally {
+                    generateDishInfoText.textContent = '✨ En savoir plus sur ce plat ✨';
+                    generateDishInfoSpinner.classList.add('hidden');
+                }
+            });
+
+            // Cart Functions
+            function updateCartCount() {
+                const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+                if (totalItems > 0) {
+                    cartItemCount.textContent = totalItems;
+                    cartItemCount.classList.remove('hidden');
+                } else {
+                    cartItemCount.classList.add('hidden');
+                }
+            }
+
+            function renderCartItems() {
+                cartItemsList.innerHTML = ''; // Clear current list
+                if (cartItems.length === 0) {
+                    emptyCartMessage.classList.remove('hidden');
+                    cartTotalDisplay.classList.add('hidden');
+                    checkoutBtn.classList.add('hidden');
+                } else {
+                    emptyCartMessage.classList.add('hidden');
+                    cartItems.forEach(item => {
+                        const itemDiv = document.createElement('div');
+                        itemDiv.className = 'flex justify-between items-center border-b pb-2';
+                        const priceValue = parseFloat(item.price.replace('€', '').replace(',', '.'));
+                        itemDiv.innerHTML = `
+                            <div>
+                                <p class="text-lg font-semibold text-gray-800">${item.name} (x${item.quantity})</p>
+                                <p class="text-sm text-gray-600">${item.description}</p>
+                            </div>
+                            <p class="text-lg font-bold text-red-600">${(priceValue * item.quantity).toFixed(2)}€</p>
+                        `;
+                        cartItemsList.appendChild(itemDiv);
+                    });
+                    const totalCartPrice = cartItems.reduce((total, item) => {
+                        const price = parseFloat(item.price.replace('€', '').replace(',', '.'));
+                        return total + (price * item.quantity);
+                    }, 0).toFixed(2);
+                    cartTotalPrice.textContent = `${totalCartPrice}€`;
+                    cartTotalDisplay.classList.remove('hidden');
+                    checkoutBtn.classList.remove('hidden');
+                }
+            }
+
+            addToCartBtn.addEventListener('click', () => {
+                const item = selectedMenuItem;
+                const existingItemIndex = cartItems.findIndex(cartItem => cartItem.name === item.name);
+
+                if (existingItemIndex > -1) {
+                    cartItems[existingItemIndex].quantity += 1;
+                } else {
+                    cartItems.push({ ...item, quantity: 1 });
+                }
+                updateCartCount();
+                closeDishModal();
+            });
+
+            cartIconContainer.addEventListener('click', () => {
+                renderCartItems();
+                cartModal.classList.remove('hidden');
+            });
+
+            closeCartModalBtn.addEventListener('click', () => {
+                cartModal.classList.add('hidden');
+            });
+
+            cartModal.addEventListener('click', (e) => {
+                if (e.target === cartModal) { // Clicked on background
+                    cartModal.classList.add('hidden');
+                }
+            });
+
+            checkoutBtn.addEventListener('click', () => {
+                alert('Procédure de paiement lancée ! Total : ' + cartTotalPrice.textContent);
+                // Ici, vous ajouteriez la logique réelle de paiement
+                cartItems = []; // Clear cart after checkout
+                updateCartCount();
+                renderCartItems();
+                closeCartModal();
+            });
+
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>
