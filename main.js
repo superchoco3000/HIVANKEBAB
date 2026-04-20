@@ -232,6 +232,25 @@
       layoutMode: 'fitRows'
     });
 
+    // Recalculate layout when images (including picture/webp) finish loading
+    const refreshMenuLayout = () => {
+      menuIsotope.arrange();
+    };
+
+    const menuImages = menuContainer.querySelectorAll('img');
+    menuImages.forEach((img) => {
+      if (!img.complete) {
+        img.addEventListener('load', refreshMenuLayout, {
+          once: true
+        });
+        img.addEventListener('error', refreshMenuLayout, {
+          once: true
+        });
+      }
+    });
+
+    window.addEventListener('load', refreshMenuLayout);
+
     let menuFilters = safeQuerySelectorAll('.menu-filters li');
     menuFilters.forEach(function(el) {
       el.addEventListener('click', function() {
@@ -243,6 +262,7 @@
         menuIsotope.arrange({
           filter: this.getAttribute('data-filter')
         });
+        refreshMenuLayout();
       }, false);
     });
   } else if (menuContainer) {

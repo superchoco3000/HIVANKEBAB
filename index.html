@@ -5,9 +5,27 @@
 
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Hivan kebab</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <title>Hivan Kebab - Restaurant Kebab a Douvaine (74140)</title>
+  <meta name="description" content="Hivan Kebab, restaurant kebab a Douvaine (74140) en Haute-Savoie. Kebab, tacos, sandwichs, burgers et click & collect.">
+  <meta name="keywords" content="Hivan Kebab, kebab Douvaine, restaurant Douvaine, kebab 74140, tacos Douvaine, restaurant turc Haute-Savoie">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://hivan-kebab.fr/">
+  <meta property="og:title" content="Hivan Kebab - Restaurant a Douvaine">
+  <meta property="og:description" content="Restaurant kebab a Douvaine: kebab, tacos, burgers, sandwichs et click & collect.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hivan-kebab.fr/">
+  <meta property="og:locale" content="fr_FR">
+
+  <script>
+    // On ne charge AdSense que si l'utilisateur a accepté
+    if (localStorage.getItem('cookies_accepted') === 'true') {
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063235468119040";
+        script.setAttribute('crossorigin', 'anonymous');
+        document.head.appendChild(script);
+    }
+</script>
 
   <!-- Favicons -->
   <link href="assets/img/logoexemple.png" rel="icon">
@@ -28,7 +46,49 @@
   <!-- Main CSS File -->
   <link href="main.css" rel="stylesheet">
 
-  
+  <meta name="google-site-verification" content="tuckOyiAj8FgprNO_U408FlGNV5zxwQMUNU5nIHES6A">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "@id": "https://hivan-kebab.fr/#localbusiness",
+      "name": "Hivan Kebab",
+      "url": "https://hivan-kebab.fr/",
+      "telephone": "+33 9 83 94 42 18",
+      "servesCuisine": ["Turque", "Kebab", "Tacos"],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rue Domino Centre - Commercial Domino",
+        "postalCode": "74140",
+        "addressLocality": "Douvaine",
+        "addressCountry": "FR"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "11:00",
+          "closes": "14:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "17:00",
+          "closes": "22:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "17:00",
+          "closes": "22:00"
+        }
+      ],
+      "priceRange": "EUR",
+      "sameAs": [
+        "https://www.facebook.com/p/Hivan-kebab-Douvaine-100057419590470/"
+      ]
+    }
+  </script>
 
 </head>
 
@@ -36,6 +96,26 @@
 
 <body class="index-page">
 
+  <div id="cookie-banner" style="display:none; position:fixed; bottom:0; width:100%; background:#1a1a1a; color:white; padding:20px; text-align:center; z-index:10000; border-top: 2px solid #ffcc00;">
+    <p>🍪 Ce site utilise des cookies pour diffuser des publicités subtiles et améliorer votre expérience.</p>
+    <button onclick="acceptCookies()" style="background:#ffcc00; color:black; border:none; padding:10px 20px; cursor:pointer; font-weight:bold; border-radius:5px; margin-top:10px;">ACCEPTER</button>
+  </div>
+
+  <script>
+  // Fonction qui s'exécute quand on clique sur Accepter
+  function acceptCookies() {
+      localStorage.setItem('cookies_accepted', 'true');
+      document.getElementById('cookie-banner').style.display = 'none';
+      location.reload(); // On recharge pour activer les pubs
+  }
+
+  // On vérifie si l'utilisateur a déjà accepté
+  window.onload = function() {
+      if (!localStorage.getItem('cookies_accepted')) {
+          document.getElementById('cookie-banner').style.display = 'block';
+      }
+  }
+  </script>
 
   <header id="header" class="header fixed-top">
 
@@ -87,7 +167,6 @@
               </ul>
             </li> -->
             <li><a href="#contact">Contact</a></li>
-          
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -106,7 +185,10 @@
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
 
-      <img src="assets/img/hivaninterieur1.jpeg" alt="" data-aos="fade-in">
+      <picture>
+        <source srcset="assets/img/hivaninterieur1.webp" type="image/webp">
+        <img src="assets/img/hivaninterieur1.jpeg" alt="Salle du restaurant Hivan Kebab a Douvaine" data-aos="fade-in" width="3072" height="4096" fetchpriority="high" decoding="async">
+      </picture>
 
       <div class="container">
         <div class="row">
@@ -135,9 +217,11 @@
         <h2>Click & Collect</h2>
         <p>Commandez votre repas en ligne</p>
       </div><div class="container">
-        <a href="https://hivankebab.foxorders.fr/shops" class="animated-cta-btn" style="width: 100%;" target="_blank">
-          <span>Commandez en ligne</span>
-        </a>
+        <div class="google-anno-skip">
+          <a href="https://hivankebab.foxorders.fr/shops" class="animated-cta-btn" style="width: 100%;" target="_blank">
+            <span>Commandez en ligne</span>
+          </a>
+        </div>
       </div>
 
     </section><br>
@@ -149,7 +233,7 @@
 
         <div class="row gy-4">
           <div class="col-lg-6 order-1 order-lg-2">
-            <img src="assets/img/hivanold.jpeg" class="img-fluid about-img" alt="">
+            <img src="assets/img/hivanold.jpeg" class="img-fluid about-img" alt="Ancienne facade du restaurant Hivan Kebab">
           </div>
           <div class="col-lg-6 order-2 order-lg-1 content">
             <h3>Notre Histoire</h3>
@@ -209,312 +293,283 @@
         <div class="row isotope-container" data-aos="fade-up" data-aos-delay="200">
 
           <div class="col-lg-6 menu-item isotope-item filter-plats">
-            <img src="assets/img/assiettekebab.jpg" class="menu-img" alt="">
+            <img src="assets/img/assiettekebab.jpg" class="menu-img" alt="Assiette kebab avec frites et salade">
             <div class="menu-content">
               <a href="#" class="product-name">Kebab classique</a><span class="product-price">€12.50</span>
             </div>
             <div class="menu-ingredients">
               Plat de viande tranchée en fines lamelles que l'on a embrochée auparavant pour la griller.<br>Ce sert avec des frites et une salade.
             </div>
-            
           </div><!-- Menu Item -->
-          
           <div class="col-lg-6 menu-item isotope-item filter-plats">
-            <img src="assets/img/entrecote.jpg" class="menu-img" alt="">
+            <img src="assets/img/entrecote.jpg" class="menu-img" alt="Assiette entrecote avec frites">
             <div class="menu-content">
               <a href="#" class="product-name">Entrecôte</a><span class="product-price">€17</span>
             </div>
             <div class="menu-ingredients">
               Délicieux morceaux d'entrecôte grillée, servis avec des frites et une sauce au choix.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-plats">
-            <img src="assets/img/brochettesboeuf.jpg" class="menu-img" alt="">
+            <img src="assets/img/brochettesboeuf.jpg" class="menu-img" alt="Brochettes de boeuf grillees">
             <div class="menu-content">
               <a href="#" class="product-name">Brochettes de boeuf</a><span class="product-price">€14.50</span>
             </div>
             <div class="menu-ingredients">
-             Morceaux de boeuf marinés, grillés à la perfection et servis avec une sauce spéciale.
+            Morceaux de boeuf marinés, grillés à la perfection et servis avec une sauce spéciale.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-plats">
-            <img src="assets/img/cotelettesagneau.png" class="menu-img" alt="">
+            <picture>
+              <source srcset="assets/img/cotelettesagneau.webp" type="image/webp">
+              <img src="assets/img/cotelettesagneau.png" class="menu-img" alt="Cotelettes d'agneau grillees" width="556" height="392" decoding="async">
+            </picture>
             <div class="menu-content">
               <a href="#" class="product-name">Côtelettes d'agneau</a><span class="product-price">€17</span>
             </div>
             <div class="menu-ingredients">
               Côtelettes d'agneau grillées, servies avec une sauce à la menthe.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-plats">
-            <img src="assets/img/pouletcurry.jpg" class="menu-img" alt="">
+            <img src="assets/img/pouletcurry.jpg" class="menu-img" alt="Poulet au curry avec riz">
             <div class="menu-content">
               <a href="#" class="product-name">Poulet au Curry</a><span class="product-price">€14</span>
             </div>
             <div class="menu-ingredients">
               Poulet mariné dans une sauce au curry, servi avec du riz basmati.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-plats">
-            <img src="assets/img/assiettefalafel.jpg" class="menu-img" alt="">
+            <img src="assets/img/assiettefalafel.jpg" class="menu-img" alt="Assiette falafels vegetarienne">
             <div class="menu-content">
               <a href="#" class="product-name">Falafels (vegan ou végétarien)</a><span class="product-price">€12.50</span>
             </div>
             <div class="menu-ingredients">
               Boulettes de pois chiches épicées, frites à la perfection, servies avec une sauce tahini.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-plats">
-            <img src="assets/img/cordonbleu.jpg" class="menu-img" alt="">
+            <img src="assets/img/cordonbleu.jpg" class="menu-img" alt="Cordon bleu avec frites et salade">
             <div class="menu-content">
               <a href="#" class="product-name">Cordon Bleu</a><span class="product-price">€12.50</span>
             </div>
             <div class="menu-ingredients">
               Une escalope panée enrobée de jambon supérieur et de fromage emmental, servie avec des frites et une salade.
             </div>
-            
           </div><!-- Menu Item -->
-          
           <div class="col-lg-6 menu-item isotope-item filter-plats">
-            <img src="assets/img/koftes.jpg" class="menu-img" alt="">
+            <img src="assets/img/koftes.jpg" class="menu-img" alt="Kofte d'agneau grille">
             <div class="menu-content">
               <a href="#" class="product-name">Köfte (agneau)</a><span class="product-price">€14</span>
             </div>
             <div class="menu-ingredients">
               Morceaux d'agneau épicés, grillés à la perfection, servis avec une sauce au choix.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-plats">
-            <img src="assets/img/iskender.jpeg" class="menu-img" alt="">
+            <img src="assets/img/iskender.jpeg" class="menu-img" alt="Iskender avec viande, pain pide et yaourt">
             <div class="menu-content">
               <a href="#" class="product-name">Iskender</a><span class="product-price">€13.50</span>
             </div>
             <div class="menu-ingredients">
                 Lamelles de viande d’agneau grillées sur pain pide, nappées de sauce tomate et de beurre fondu, accompagnées de yaourt et frites.
             </div>
-            
           </div><!-- Menu Item -->
 
 
 
           <div class="col-lg-6 menu-item isotope-item filter-sandwichs">
-            <img src="assets/img/sandwichkebab.jpg" class="menu-img" alt="">
+            <img src="assets/img/sandwichkebab.jpg" class="menu-img" alt="Sandwich kebab avec crudites">
             <div class="menu-content">
               <a href="#" class="product-name">Sandwich Kebab</a><span class="product-price">€8 (12€ en menu)</span>
             </div>
             <div class="menu-ingredients">
               Viande d'agneau marinée, grillée et servie dans un pain pita avec des légumes frais et une sauce au yaourt.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-sandwichs">
-            <img src="assets/img/hivisandwich.jpg" class="menu-img" alt="">
+            <img src="assets/img/hivisandwich.jpg" class="menu-img" alt="Sandwich Hiv-lis avec frites">
             <div class="menu-content">
               <a href="#" class="product-name">Sandwich Hiv-lis</a><span class="product-price">€9.50 (13€ en menu)</span>
             </div>
             <div class="menu-ingredients">
               Pain pita garni de viande d’agneau grillée, accompagné de frites, crudités fraîches et sauce maison.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-sandwichs">
-            <img src="assets/img/sandwichcordonbleu.jpg" class="menu-img" alt="">
+            <img src="assets/img/sandwichcordonbleu.jpg" class="menu-img" alt="Sandwich cordon bleu avec frites">
             <div class="menu-content">
               <a href="#" class="product-name">Sandwich cordon bleu</a><span class="product-price">€8.50 (12.50€ en menu)</span>
             </div>
             <div class="menu-ingredients">
                 Escalope de poulet panée, garnie de jambon et de fromage, servie dans un pain pita avec crudités fraîches, frites et sauce maison.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-sandwichs">
-            <img src="assets/img/sandwichamericain.jpg" class="menu-img" alt="">
+            <img src="assets/img/sandwichamericain.jpg" class="menu-img" alt="Sandwich americain avec steak hache">
             <div class="menu-content">
               <a href="#" class="product-name">Sandwich americain</a><span class="product-price">€8.50 (12.50€ en menu)</span>
             </div>
             <div class="menu-ingredients">
                 Pain pita garni de steak haché, sauce américaine, frites, crudités fraîches et sauce maison.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-sandwichs">
-            <img src="assets/img/sandwichbrochette.png" class="menu-img" alt="">
+            <img src="assets/img/sandwichbrochette.png" class="menu-img" alt="Sandwich brochette avec crudites">
             <div class="menu-content">
               <a href="#" class="product-name">Sandwich brochette</a><span class="product-price">€8.50 (12.50€ en menu)</span>
             </div>
             <div class="menu-ingredients">
                 Pain pita garni de viande de brochette, frites, crudités fraîches et sauce maison.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-sandwichs">
-            <img src="assets/img/sandwichmerguez.png" class="menu-img" alt="">
+            <picture>
+              <source srcset="assets/img/sandwichmerguez.webp" type="image/webp">
+              <img src="assets/img/sandwichmerguez.png" class="menu-img" alt="Sandwich merguez et frites" width="796" height="694" loading="lazy" decoding="async">
+            </picture>
             <div class="menu-content">
               <a href="#" class="product-name">Sandwich merguez</a><span class="product-price">€8.50 (12.50€ en menu)</span>
             </div>
             <div class="menu-ingredients">
                 Pain pita garni de merguez, frites, crudités fraîches et sauce maison.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-sandwichs">
-            <img src="assets/img/sandwichchikencurry.jpg" class="menu-img" alt="">
+            <img src="assets/img/sandwichchikencurry.jpg" class="menu-img" alt="Sandwich poulet curry et frites">
             <div class="menu-content">
               <a href="#" class="product-name">Sandwich au poulet curry</a><span class="product-price">€8.50 (12.50€ en menu)</span>
             </div>
             <div class="menu-ingredients">
                 Pain pita garni de poulet au curry, frites, crudités fraîches et sauce maison.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-sandwichs">
-            <img src="assets/img/sandwwichescalope.jpg" class="menu-img" alt="">
+            <img src="assets/img/sandwwichescalope.jpg" class="menu-img" alt="Sandwich escalope panee">
             <div class="menu-content">
               <a href="#" class="product-name">Sandwich à l'escalope</a><span class="product-price">€8.50 (12.50€ en menu)</span>
             </div>
             <div class="menu-ingredients">
                 Pain pita garni d'escalope, frites, crudités fraîches et sauce maison.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-sandwichs">
-            <img src="assets/img/sandwichkofte.jpg" class="menu-img" alt="">
+            <img src="assets/img/sandwichkofte.jpg" class="menu-img" alt="Sandwich kofte avec crudites">
             <div class="menu-content">
               <a href="#" class="product-name">Sandwich aux Koftes</a><span class="product-price">€9 (13€ en menu)</span>
             </div>
             <div class="menu-ingredients">
                 Pain pita garni de kofte, frites, crudités fraîches et sauce maison.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-sandwichs">
-            <img src="assets/img/sandwichfalafel.jpg" class="menu-img" alt="">
+            <img src="assets/img/sandwichfalafel.jpg" class="menu-img" alt="Sandwich falafel vegetarien">
             <div class="menu-content">
               <a href="#" class="product-name">Sandwich falafel (végétarien)</a><span class="product-price">€8.50 (12.50€ en menu)</span>
             </div>
             <div class="menu-ingredients">
                 Pain pita garni de falafel, frites, crudités fraîches et sauce maison.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-sandwichs">
-            
             <div class="menu-content">
               <a href="#" class="product-name">Extra Crudités - Frites</a><span class="product-price">€5</span>
             </div>
             <div class="menu-ingredients">
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-sandwichs">
-            
             <div class="menu-content">
               <a href="#" class="product-name">Extra Feta - Crudités - Frites</a><span class="product-price">€6.50</span>
             </div>
             <div class="menu-ingredients">
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-sandwichs">
-            
             <div class="menu-content">
               <a href="#" class="product-name">Extra Thon - Crudités</a><span class="product-price">€7</span>
             </div>
             <div class="menu-ingredients">
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-sandwichs">
-            
             <div class="menu-content">
               <a href="#" class="product-name">Extra 2 Viandes (sauf brochette)</a><span class="product-price">€9.50 (13.50€ en menu)</span>
             </div>
             <div class="menu-ingredients">
             </div>
-            
           </div><!-- Menu Item -->
 
 
 
           <div class="col-lg-6 menu-item isotope-item filter-burgers">
-            <img src="assets/img/doubleburgerpoulet.jpg" class="menu-img" alt="">
+            <img src="assets/img/doubleburgerpoulet.jpg" class="menu-img" alt="Double burger maison">
             <div class="menu-content">
               <a href="#" class="product-name">Double Burger</a><span class="product-price">€6.50 (10.50€ en menu)</span>
             </div>
             <div class="menu-ingredients">
               Deux steaks hachés, fromage, salade, tomate et sauce maison dans un pain burger.<br>Mixte (1 steak et poulet) pour 1€ de plus.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-burgers">
-            <img src="assets/img/burgerhivlis.jpg" class="menu-img" alt="">
+            <img src="assets/img/burgerhivlis.jpg" class="menu-img" alt="Burger-Lis facon Hiv-lis">
             <div class="menu-content">
               <a href="#" class="product-name">Burger-Lis</a><span class="product-price">€9.50 (13.50€ en menu)</span>
             </div>
             <div class="menu-ingredients">
                 Pain burger garni de viande d’agneau grillée façon Hiv-lis, fromage fondant, salade, tomate et sauce maison pour une saveur unique.
             </div>
-            
           </div><!-- Menu Item -->
 
 
 
           <div class="col-lg-6 menu-item isotope-item filter-tacos">
-            <img src="assets/img/galetteclassique.jpg" class="menu-img" alt="">
+            <img src="assets/img/galetteclassique.jpg" class="menu-img" alt="Tacos classique kebab galette frites">
             <div class="menu-content">
               <a href="#" class="product-name">Classique</a><span class="product-price">€8.50 (12.50€ en menu)</span>
             </div>
             <div class="menu-ingredients">
                 Viande de kebab grillée, accompagnée de frites, crudités fraîches et sauce maison, le tout enveloppé dans une tortilla moelleuse.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-tacos">
-            <img src="assets/img/tacosdumonde_4_11zon.jpeg" class="menu-img" alt="">
+            <img src="assets/img/tacosdumonde_4_11zon.jpeg" class="menu-img" alt="Tacos du Monde avec kebab, feta et grenade">
             <div class="menu-content">
               <a href="#" class="product-name">TacosDu Monde</a><span class="product-price">€18.50</span>
             </div>
             <div class="menu-ingredients">
                 Viande de kebab grillée, accompagnée de frites, crudités fraîches et sauce maison, le tout enveloppé dans une tortilla moelleuse. Ajout de grenade fraîche, feta et poivrons pour une touche colorée et savoureuse.
             </div>
-            
           </div><!-- Menu Item -->
-          
           <div class="col-lg-6 menu-item isotope-item filter-tacos">
             <div class="menu-content">
               <a href="#" class="product-name">Extra 2 viandes</a><span class="product-price"></span>
             </div>
             <div class="menu-ingredients">
-              1€ de plus  
+              1€ de plus
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-tacos">
@@ -522,9 +577,8 @@
               <a href="#" class="product-name">Extra 3 viandes</a><span class="product-price"></span>
             </div>
             <div class="menu-ingredients">
-              2€ de plus  
+              2€ de plus
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-tacos">
@@ -532,9 +586,8 @@
               <a href="#" class="product-name">Suppléments: Cheddar / Feta / Raclette / Chèvre / Supp. Oeuf + Grattinage</a><span class="product-price"></span>
             </div>
             <div class="menu-ingredients">
-              1€ de plus  
+              1€ de plus
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-tacos">
@@ -542,77 +595,70 @@
               <a href="#" class="product-name">Tailles Maxi</a><span class="product-price"></span>
             </div>
             <div class="menu-ingredients">
-              1€ de plus pour 1 viande, 2€ de plus pour 2 viandes, 3€ de plus pour 3 viandes.           
+              1€ de plus pour 1 viande, 2€ de plus pour 2 viandes, 3€ de plus pour 3 viandes.
             </div>
-            
           </div><!-- Menu Item -->
 
 
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
-            <img src="assets/img/gallery/grandebox.jpg" class="menu-img" alt="">
+            <img src="assets/img/gallery/grandebox.jpg" class="menu-img" alt="Grande Box Hivan avec frites et viande">
             <div class="menu-content">
               <a href="#" class="product-name">Grande Box Hivan </a><span class="product-price">€9.50</span>
             </div>
             <div class="menu-ingredients">
                 Frites croustillantes accompagnées de généreuses portions de viandes au choix (kebab, poulet, ou merguez), servies avec un assortiment de sauces maison pour une expérience gourmande et personnalisée.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
-            <img src="assets/img/gallery/box1.jpeg" class="menu-img" alt="">
+            <img src="assets/img/gallery/box1.jpeg" class="menu-img" alt="Box simple avec frites et viande">
             <div class="menu-content">
               <a href="#" class="product-name">Box Simple </a><span class="product-price">€7.50</span>
             </div>
             <div class="menu-ingredients">
                 Petites Frites croustillantes accompagnées de généreuses portions de viandes au choix (kebab, poulet, ou merguez), servies avec un assortiment de sauces maison pour une expérience gourmande et personnalisée.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
-            <img src="assets/img/boxpouletfrites.jpg" class="menu-img" alt="">
+            <img src="assets/img/boxpouletfrites.jpg" class="menu-img" alt="Box poulet a la broche et frites">
             <div class="menu-content">
               <a href="#" class="product-name">Box Poulet à la broche</a><span class="product-price">€8.50</span>
             </div>
             <div class="menu-ingredients">
                 Délicieux morceaux de poulet rôti à la broche, dorés et croustillants, accompagnés d'une sauce au choix et des frites.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
-            <img src="assets/img/nuggets.jpg" class="menu-img" alt="">
+            <img src="assets/img/nuggets.jpg" class="menu-img" alt="Nuggets de poulet et frites">
             <div class="menu-content">
               <a href="#" class="product-name">Nuggets de Poulet (8 pièces)</a><span class="product-price">€6.50</span>
             </div>
             <div class="menu-ingredients">
                 Délicieux morceaux de poulet panés, dorés et croustillants, accompagnés d'une sauce au choix et des frites.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
-            <img src="assets/img/boxfalafel.jpg" class="menu-img" alt="">
+            <img src="assets/img/boxfalafel.jpg" class="menu-img" alt="Box falafels avec frites">
             <div class="menu-content">
               <a href="#" class="product-name">Falafels (6 pièces)</a><span class="product-price">€6.50</span>
             </div>
             <div class="menu-ingredients">
                 Délicieux falafels végétariens, accompagnés d'une sauce au choix et des frites.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
-            <img src="assets/img/boxtenders.jpg" class="menu-img" alt="">
+            <img src="assets/img/boxtenders.jpg" class="menu-img" alt="Box tenders avec sauce">
             <div class="menu-content">
               <a href="#" class="product-name">Box Tenders</a><span class="product-price">€7.50</span>
             </div>
             <div class="menu-ingredients">
                 Délicieux morceaux de poulet panés, dorés et croustillants, accompagnés d'une sauce au choix et des frites.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
@@ -620,180 +666,154 @@
               <a href="#" class="product-name">Sauces</a><span class="product-price">+ 1€</span>
             </div>
             <div class="menu-ingredients">
-              Blanche, BBQ, Algérienne, Samouraï, Américaine, Harissa, Sauce Biggy, Ketchup,  Mayonnaise, Curry, Marocaine, Moutardes, Gruyère, Andalouse.          
+              Blanche, BBQ, Algérienne, Samouraï, Américaine, Harissa, Sauce Biggy, Ketchup,  Mayonnaise, Curry, Marocaine, Moutardes, Gruyère, Andalouse.
             </div>
-            
           </div><!-- Menu Item -->
 
 
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
-            <img src="assets/img/saladecesar.jpg" class="menu-img" alt="">
+            <img src="assets/img/saladecesar.jpg" class="menu-img" alt="Salade Cesar au poulet grille">
             <div class="menu-content">
               <a href="#" class="product-name">Salade César</a><span class="product-price">€8.50</span>
             </div>
             <div class="menu-ingredients">
                 Délicieuse salade César avec des morceaux de poulet grillé, des croûtons et du parmesan.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
-            <img src="assets/img/saladefalafel.png" class="menu-img" alt="">
+            <picture>
+              <source srcset="assets/img/saladefalafel.webp" type="image/webp">
+              <img src="assets/img/saladefalafel.png" class="menu-img" alt="Salade falafel vegetarienne" width="1200" height="1200" loading="lazy" decoding="async">
+            </picture>
             <div class="menu-content">
               <a href="#" class="product-name">Salade Falafel</a><span class="product-price">€8.50</span>
             </div>
             <div class="menu-ingredients">
                 Délicieuse salade Falafel avec des falafels végétariens, des légumes frais et une sauce tahini.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
-            <img src="assets/img/saaldemedit.jpg" class="menu-img" alt="">
+            <img src="assets/img/saaldemedit.jpg" class="menu-img" alt="Salade mediterraneenne">
             <div class="menu-content">
               <a href="#" class="product-name">Salade Méditerranéenne</a><span class="product-price">€7.50</span>
             </div>
             <div class="menu-ingredients">
                 Délicieuse salade Méditerranéenne avec des légumes frais et une vinaigrette maison.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
-            <img src="assets/img/saladetenders.jpg" class="menu-img" alt="">
+            <img src="assets/img/saladetenders.jpg" class="menu-img" alt="Salade tenders croustillants">
             <div class="menu-content">
               <a href="#" class="product-name">Salade Tenders</a><span class="product-price">€8.50</span>
             </div>
             <div class="menu-ingredients">
                 Délicieuse salade avec des morceaux de poulet croustillants, des légumes frais et une vinaigrette maison.
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
-            
             <div class="menu-content">
               <a href="#" class="product-name">Coca Cola</a><span class="product-price">€2.50</span>
             </div>
             <div class="menu-ingredients">
-              Normal / Light / Zero Sugar/ Cherry           
+              Normal / Light / Zero Sugar/ Cherry
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
-            
             <div class="menu-content">
               <a href="#" class="product-name">Oasis</a><span class="product-price">€2.50</span>
             </div>
             <div class="menu-ingredients">
-              Tropical / PCF         
+              Tropical / PCF
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
-           
             <div class="menu-content">
               <a href="#" class="product-name">Schweppes</a><span class="product-price">€2.50</span>
             </div>
             <div class="menu-ingredients">
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
-            
             <div class="menu-content">
               <a href="#" class="product-name">Fanta</a><span class="product-price">€2.50</span>
             </div>
             <div class="menu-ingredients">
-              Orange / Citron          
+              Orange / Citron
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
-            
             <div class="menu-content">
               <a href="#" class="product-name">Jus</a><span class="product-price">€2.50</span>
             </div>
             <div class="menu-ingredients">
-              Orange / Pomme           
+              Orange / Pomme
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
-            
             <div class="menu-content">
               <a href="#" class="product-name">Sprite / 7UP Mojito</a><span class="product-price">€2.50</span>
             </div>
             <div class="menu-ingredients">
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
-            
             <div class="menu-content">
               <a href="#" class="product-name">Orangina</a><span class="product-price">€2.50</span>
             </div>
             <div class="menu-ingredients">
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
-            
             <div class="menu-content">
               <a href="#" class="product-name">Ice Tea</a><span class="product-price">€2.50</span>
             </div>
             <div class="menu-ingredients">
-              Citron / Framboise / Pastèque / Menthe / Pêche        
+              Citron / Framboise / Pastèque / Menthe / Pêche
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
-           
             <div class="menu-content">
               <a href="#" class="product-name">Ayran</a><span class="product-price">€2.50</span>
             </div>
             <div class="menu-ingredients">
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
-          
             <div class="menu-content">
               <a href="#" class="product-name">Tropico</a><span class="product-price">€2.50</span>
             </div>
             <div class="menu-ingredients">
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
-           
             <div class="menu-content">
               <a href="#" class="product-name">Red Bull</a><span class="product-price">€3</span>
             </div>
             <div class="menu-ingredients">
             </div>
-            
           </div><!-- Menu Item -->
 
           <div class="col-lg-6 menu-item isotope-item filter-drinksandsalad">
-            
             <div class="menu-content">
               <a href="#" class="product-name">Petite Bouteille d'Eau</a><span class="product-price">€1.50</span>
             </div>
             <div class="menu-ingredients">
             </div>
-            
           </div><!-- Menu Item -->
         </div><!-- Menu Container -->
       </div>
@@ -839,7 +859,7 @@
                     <p>Le Hiv-lis est un plat à base de viande, spécialité de la région de Bursa. Il consiste en lamelles de viande d'agneau servies sur une tranche de pain plat, le pide. Elles sont arrosées de beurre fondu et de sauce tomate au moment de servir. L'assiette est accompagnée de yaourt.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/hiv-lis.jpg" alt="" class="img-fluid">
+                    <img src="assets/img/hiv-lis.jpg" alt="Specialite Hiv-lis" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -851,7 +871,7 @@
                     <p>La Box est composée de délicieux morceaux de poulet rôti à la broche, dorés et croustillants, accompagnés de frites maison et d'une sauce au choix. Un classique savoureux et généreux, parfait pour les amateurs de poulet.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/grandebox.jpg" alt="" class="img-fluid">
+                    <img src="assets/img/grandebox.jpg" alt="Specialite Box Hivan" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -863,7 +883,7 @@
                     <p>Les köftes peuvent être préparées avec différentes viandes, comme l'agneau ou le bœuf, et sont généralement servies avec du pain pita, des légumes et des sauces.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/koftes.jpg" alt="" class="img-fluid">
+                    <img src="assets/img/koftes.jpg" alt="Specialite koftes" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -871,11 +891,11 @@
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
                     <h3>Tacos du Monde</h3>
-                    <p class="fst-italic">Sélection du chef : Le Tacos du Monde est une création unique.
+                    <p class="fst-italic">Sélection du chef : Le Tacos du Monde est une création unique.</p>
                     <p>Chaque taco est préparé avec des ingrédients frais et de qualité, offrant une expérience culinaire unique.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/tacosdumonde_4_11zon.jpeg" alt="" class="img-fluid">
+                    <img src="assets/img/tacosdumonde_4_11zon.jpeg" alt="Specialite Tacos du Monde" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -887,7 +907,7 @@
                     <p>La Box est composée de délicieux morceaux de poulet rôti à la broche, dorés et croustillants, accompagnés de frites maison et d'une sauce au choix. Un classique savoureux et généreux, parfait pour les amateurs de poulet.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/boxpouletfrites.jpg" alt="" class="img-fluid">
+                    <img src="assets/img/boxpouletfrites.jpg" alt="Specialite box poulet frites" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -902,7 +922,10 @@
     <!-- Events Section -->
     <section id="events" class="events section">
 
-      <img class="slider-bg" src="assets/img/page-title-bg.jpeg" alt="" data-aos="fade-in">
+      <picture>
+        <source srcset="assets/img/page-title-bg.webp" type="image/webp">
+        <img class="slider-bg" src="assets/img/page-title-bg.jpeg" alt="Fond de section des plus vendus" data-aos="fade-in" width="1920" height="859" loading="lazy" decoding="async">
+      </picture>
 
       <div class="container">
 
@@ -927,7 +950,7 @@
             <div class="swiper-slide">
               <div class="row gy-4 event-item">
                 <div class="col-lg-6">
-                  <img src="assets/img/grandebox.jpg" class="img-fluid" alt="">
+                  <img src="assets/img/grandebox.jpg" class="img-fluid" alt="Photo Box Hivan plus vendu">
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0 content">
                   <h3>Dans Les Plus Vendus:<br> Box Hivan </h3>
@@ -957,7 +980,7 @@
             <div class="swiper-slide">
               <div class="row gy-4 event-item">
                 <div class="col-lg-6">
-                  <img src="assets/img/koftes.jpg" class="img-fluid" alt="">
+                  <img src="assets/img/koftes.jpg" class="img-fluid" alt="Photo koftes plus vendu">
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0 content">
                   <h3>Dans les plus vendus:<br> Les Köftes</h3>
@@ -986,7 +1009,7 @@
             <div class="swiper-slide">
               <div class="row gy-4 event-item">
                 <div class="col-lg-6">
-                  <img src="assets/img/what.jpeg"class="img-fluid" alt="">
+                  <img src="assets/img/what.jpeg" class="img-fluid" alt="Photo sandwich Hiv-lis plus vendu">
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0 content">
                   <h3>Dans les plus vendus:<br> Le sandwich Hiv-lis</h3>
@@ -1005,9 +1028,8 @@
                       </span>
                     </li>
                   </ul>
-                  </ul>
                   <p>
-                    Le sandwich Hiv-lis est une création inspirée du célèbre plat turc Iskender, originaire de la région de Bursa en Turquie. Ce sandwich généreux associe des lamelles de viande d’agneau grillée, marinées avec des épices traditionnelles, à des frites croustillantes, des crudités fraîches et une sauce maison onctueuse, le tout servi dans un pain pita moelleux. 
+                    Le sandwich Hiv-lis est une création inspirée du célèbre plat turc Iskender, originaire de la région de Bursa en Turquie. Ce sandwich généreux associe des lamelles de viande d’agneau grillée, marinées avec des épices traditionnelles, à des frites croustillantes, des crudités fraîches et une sauce maison onctueuse, le tout servi dans un pain pita moelleux.
                     L’histoire du Hiv-lis remonte à la tradition familiale de la cuisine turque, où chaque ingrédient est soigneusement sélectionné pour garantir authenticité et saveur. Le nom "Hiv-lis" rend hommage à la passion et au savoir-faire transmis de génération en génération, faisant de ce sandwich un incontournable pour les amateurs de cuisine orientale. Il incarne l’esprit de convivialité et de partage, valeurs chères à la culture turque, et promet un voyage gustatif unique à chaque bouchée.
                   </p>
                 </div>
@@ -1022,7 +1044,6 @@
 
     </section><!-- /Events Section --><br>
 
-   
 
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials section">
@@ -1064,14 +1085,14 @@
           <div class="swiper-wrapper">
 
             <div class="swiper-slide">
-              <div class="testimonial-item" "="">
-            <p>
-              <i class=" bi bi-quote quote-icon-left"></i>
+              <div class="testimonial-item">
+                <p>
+                <i class=" bi bi-quote quote-icon-left"></i>
                 <span>Meilleur Kebbab de tout l’univers !
                   Serviable, sympathique, viande et produits frais … j’adore ! Top!! Restez comme vous êtes.</span>
                 <i class="bi bi-quote quote-icon-right"></i>
                 </p>
-                <img src="assets/img/testimonials/jade.jpg" class="testimonial-img" alt="">
+                <img src="assets/img/testimonials/jade.jpg" class="testimonial-img" alt="Photo de Jade cliente">
                 <h3>Jade</h3>
                 <h4>Cliente Habituelle</h4>
               </div>
@@ -1084,7 +1105,7 @@
                   <span>J'étais à vélo et je cherchais un endroit pour manger et m'asseoir dehors et je les ai trouvés très familiaux. Les tacos sont excellents et le service est très sympathique.</span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
-                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="Photo de Andre client">
                 <h3>André</h3>
                 <h4>Cuisinière frontalière</h4>
               </div>
@@ -1097,7 +1118,7 @@
                   <span>Excelent kebab. La sauce blanche était vraiment bonne avec du goût. Tout était très bon et bien garni. Lieu propre. Je reviendrai ! 👌🏼</span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
-                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="Photo de Jena cliente">
                 <h3>Jena K.</h3>
                 <h4>Propriétaire magasin</h4>
               </div>
@@ -1110,7 +1131,7 @@
                   <span>Après plusieurs commandes chez Hivan, je n'ai jamais été déçu. Essayez les Köftes!!</span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
-                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="Photo de Matt client">
                 <h3>Matt Brandon</h3>
                 <h4>Freelancer</h4>
               </div>
@@ -1124,7 +1145,7 @@
                     You will not regret the Kebab here at all.💯👌👍</span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
-                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="Photo de John client">
                 <h3>John L.</h3>
                 <h4>Entrepreneur</h4>
               </div>
@@ -1154,7 +1175,7 @@
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
               <a href="assets/img/gallery/aufour.jpeg" class="glightbox" data-gallery="images-gallery">
-                <img src="assets/img/gallery/aufour.jpeg" alt="" class="img-fluid">
+                <img src="assets/img/gallery/aufour.jpeg" alt="Photo plat cuit au four" class="img-fluid">
               </a>
             </div>
           </div><!-- End Gallery Item -->
@@ -1162,7 +1183,7 @@
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
               <a href="assets/img/gallery/baklava.jpg" class="glightbox" data-gallery="images-gallery">
-                <img src="assets/img/gallery/baklava.jpg" alt="" class="img-fluid">
+                <img src="assets/img/gallery/baklava.jpg" alt="Baklava maison" class="img-fluid">
               </a>
             </div>
           </div><!-- End Gallery Item -->
@@ -1170,7 +1191,7 @@
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
               <a href="assets/img/gallery/box1.jpeg" class="glightbox" data-gallery="images-gallery">
-                <img src="assets/img/gallery/box1.jpeg" alt="" class="img-fluid">
+                <img src="assets/img/gallery/box1.jpeg" alt="Photo box frites et viande" class="img-fluid">
               </a>
             </div>
           </div><!-- End Gallery Item -->
@@ -1178,7 +1199,7 @@
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
               <a href="assets/img/gallery/brochettes.jpeg" class="glightbox" data-gallery="images-gallery">
-                <img src="assets/img/gallery/brochettes.jpeg" alt="" class="img-fluid">
+                <img src="assets/img/gallery/brochettes.jpeg" alt="Brochettes grillees" class="img-fluid">
               </a>
             </div>
           </div><!-- End Gallery Item -->
@@ -1186,15 +1207,18 @@
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
               <a href="assets/img/gallery/grandebox.jpg" class="glightbox" data-gallery="images-gallery">
-                <img src="assets/img/gallery/grandebox.jpg" alt="" class="img-fluid">
+                <img src="assets/img/gallery/grandebox.jpg" alt="Grande Box Hivan" class="img-fluid">
               </a>
             </div>
           </div><!-- End Gallery Item -->
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="assets/img/gallery/herotroisplats.jpg" class="glightbox" data-gallery="images-gallery">
-                <img src="assets/img/gallery/herotroisplats.jpg" alt="" class="img-fluid">
+              <a href="assets/img/gallery/herotroisplats.webp" class="glightbox" data-gallery="images-gallery">
+                <picture>
+                  <source srcset="assets/img/gallery/herotroisplats.webp" type="image/webp">
+                  <img src="assets/img/gallery/herotroisplats.jpg" alt="Assortiment de trois plats turcs" class="img-fluid" width="800" height="600" loading="lazy" decoding="async">
+                </picture>
               </a>
             </div>
           </div><!-- End Gallery Item -->
@@ -1202,7 +1226,7 @@
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
               <a href="assets/img/gallery/nouveauplat.jpeg" class="glightbox" data-gallery="images-gallery">
-                <img src="assets/img/gallery/nouveauplat.jpeg" alt="" class="img-fluid">
+                <img src="assets/img/gallery/nouveauplat.jpeg" alt="Nouveau plat de la carte" class="img-fluid">
               </a>
             </div>
           </div><!-- End Gallery Item -->
@@ -1210,7 +1234,7 @@
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
               <a href="assets/img/gallery/tacoclassique.jpg" class="glightbox" data-gallery="images-gallery">
-                <img src="assets/img/gallery/tacoclassique.jpg" alt="" class="img-fluid">
+                <img src="assets/img/gallery/tacoclassique.jpg" alt="Tacos classique avec frites" class="img-fluid">
               </a>
             </div>
           </div><!-- End Gallery Item -->
@@ -1227,7 +1251,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Le Chef</h2>
-        <p>Le cuisinier de génie qui s'occupera de vous faire de petit plats savoureux turcs</p>
+        <p>Le cuisinier de génie qui s'occupera de vous faire de petit plats turcs savoureux.</p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -1237,7 +1261,7 @@
             <div class="col-lg-8 d-flex justify-content" data-aos="fade-up" data-aos-delay="200">
 
             <div class="member">
-              <img src="assets/img/ali.jpg" class="img-fluid" alt="">
+              <img src="assets/img/ali.jpg" class="img-fluid" alt="Ali chef et gerant de Hivan Kebab">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Ali</h4>
@@ -1301,15 +1325,6 @@
                 <p>09 83 94 42 18</p>
               </div>
             </div><br><!-- End Info Item -->
-
-           <!--- <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
-              <i class="bi bi-envelope flex-shrink-0"></i>
-               <div>
-                <h3>Email Us</h3>
-                <p>info@example.com</p>
-              </div> -->
-            </div><!-- End Info Item -->
-
           </div>
 
           <div class="col-lg-8">
@@ -1328,7 +1343,9 @@
                   <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
                 </div>
                 <div class="col-md-12 text-center">
-                  <div class="loading"><Chargement class=""></Chargement></div>
+                  <div class="loading">
+                    <Chargement class=""></Chargement>
+                  </div>
                   <div class="error-message"></div>
                   <div class="sent-message">Votre message a été envoyé !</div>
                   <button type="submit">Envoyer le message</button>
@@ -1358,22 +1375,29 @@
             <p>Rue Domino Centre - Commercial Domino</p>
             <p>74140 - Douvaine</p>
             <p class="mt-3"><strong>Téléphone:</strong> <span>09 83 94 42 18</span></p>
-            <p><strong>Email:</strong> <span>info@example.com</span></p>
+            <p><strong>Email:</strong> <span>hivankebab74140@icloud.com</span></p>
           </div>
+          <br>
+          <p>&copy; 2026 Hivan Kebab. Tous les droits réservés.</p>
+          <div class="legal-links">
+            <a href="mentions-legales.html" style="color: #bbb; font-size: 0.8rem; margin: 0 10px;">Mentions Légales</a>
+            <a href="politique-confidentialite.html" style="color: #bbb; font-size: 0.8rem; margin: 0 10px;">Politique de Confidentialité</a>
+          </div>
+
           <div class="social-links d-flex mt-4">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
+            <a href="https://www.facebook.com/p/Hivan-kebab-Douvaine-100057419590470/" target="_blank" rel="noopener" aria-label="Facebook Hivan Kebab"><i class="bi bi-twitter-x"></i></a>
+            <a href="https://www.facebook.com/p/Hivan-kebab-Douvaine-100057419590470/" target="_blank" rel="noopener" aria-label="Facebook Hivan Kebab"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.facebook.com/p/Hivan-kebab-Douvaine-100057419590470/" target="_blank" rel="noopener" aria-label="Facebook Hivan Kebab"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.facebook.com/p/Hivan-kebab-Douvaine-100057419590470/" target="_blank" rel="noopener" aria-label="Facebook Hivan Kebab"><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
 
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Liens utiles</h4>
           <ul>
-            <li><a href="#">Bienvenue</a></li>
-            <li><a href="#">Histoire et tradition</a></li>
-            <li><a href="#">book-a-table</a></li>
+            <li><a href="#hero">Bienvenue</a></li>
+            <li><a href="#about">Histoire et tradition</a></li>
+            <li><a href="#book-a-table">Click & Collect</a></li>
           </ul>
         </div>
 
@@ -1406,7 +1430,6 @@
 
   <!-- Main JS File -->
   <script src="main.js"></script>
-  
 </body>
 
 </html>
